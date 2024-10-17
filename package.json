@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "homepage": "https://subramanyamchoda.github.io/firebasesendfiles",
+=======
+  "homepage": "https://subramanyamchoda.github.io/",
+>>>>>>> 05cb2a8bdbc668b354de7f41c6aff6caf9cb787b
   "name": "webstack",
   "private": true,
   "version": "0.0.0",
