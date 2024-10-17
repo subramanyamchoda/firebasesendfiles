@@ -63,11 +63,9 @@ const Send = () => {
           setDownloadURL(downloadURL); // Save the download URL
           setUploading(false);
           // Pass the downloadURL as state while navigating to /Files
-<<<<<<< HEAD
-          navigate('/firebasesendfiles/files', { state: { downloadURL } });
-=======
+
           navigate('/firebasesendfiles/Files', { state: { downloadURL } });
->>>>>>> 05cb2a8bdbc668b354de7f41c6aff6caf9cb787b
+
         });
       }
     );
