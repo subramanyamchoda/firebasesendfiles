@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage"; // Import the storage service
+import { getStorage } from "firebase/storage"; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyCyN9JvkHy0lhiZZMcJwsHV_9EH4Gk_-J8",
@@ -12,8 +12,8 @@ const firebaseConfig = {
   measurementId: "G-2GZQZF9Y3G"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app); // Initialize Firebase storage service
 
-export { storage }; // Export storage to be used in your App component
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app); 
+
+export { storage }; 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { storage } from './Firebase'; // Import your Firebase configuration
+import { storage } from './Firebase';
 import { useNavigate } from 'react-router-dom';
 
 const Send = () => {
@@ -16,8 +17,32 @@ const Send = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    if (!file) return;
 
+    // Ensure a file is selected
+    if (!file) {
+      alert('Please select a file to upload');
+      return;
+    }
+
+    // Step 1: Send email
+    const templateParams = {
+      user_name: 'John Doe',  // Hardcoded Name
+      user_email: 'subramanymchoda50@gmail.com',  // Hardcoded Email
+      message: 'text me'  // Hardcoded Message
+    };
+
+    emailjs.send('service_q9mc1gb', 'template_sqc4joo', templateParams, 'jN--TlZc4OPInknIx')
+      .then((result) => {
+        console.log(' sent successfully:', result.text);
+        // Proceed to file upload after email is sent
+        uploadFile();
+      }, (error) => {
+        console.error('Error sending :', error.text);
+      });
+  };
+
+  // Step 2: Upload the file to Firebase Storage
+  const uploadFile = () => {
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -26,7 +51,7 @@ const Send = () => {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        // Optionally handle progress or other states here
+        // Optionally, you can add progress tracking here
       },
       (error) => {
         console.error("Error uploading file:", error);
@@ -38,7 +63,7 @@ const Send = () => {
           setDownloadURL(downloadURL); // Save the download URL
           setUploading(false);
           // Pass the downloadURL as state while navigating to /Files
-          navigate('/Files', { state: { downloadURL } });
+          navigate('/firebasesendfiles/files', { state: { downloadURL } });
         });
       }
     );

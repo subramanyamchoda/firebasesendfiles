@@ -8,8 +8,9 @@ const App = () => {
       <Router>
         <Routes>
          
-          <Route path="/" element={<Send />} />
-          <Route path='/Files' element={<Files/>}/>
+          <Route path="/firebasesendfiles" element={<Send />} />
+          
+          <Route path='/firebasesendfiles/files' element={<Files/>}/>
         </Routes>
       </Router>
     </>
